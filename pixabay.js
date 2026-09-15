@@ -6,10 +6,30 @@ const searchImages = async (text) => {
   return response.json();
   //estou pegando apenas o json
 };
+const createLink = (tag) => `
+    <a hrfe="#">
+    ${tag}
+    </a>
+`;
+
+const createCard = ({ webformatURL }) => {
+  const card = document.createElement("div");
+  card.classList.add("card-container");
+  card.innerHTML = `
+  <a href= "# card-img>
+  <img src=${webformatURL}>
+  </a>
+  `;
+
+  return card;
+};
 
 const loadGallery = async (text) => {
-  const imagesInfo = await searchImages(text);
-  console.log(imagesInfo);
+  const container = document.querySelector(".container-gallery");
+  const { hits } = await searchImages(text);
+  const cards = hits.map(createCard);
+  container.replaceChildren(...cards);
+  console.log(cards);
 };
 
 //o target é onde eu estou cliando, ou seja, o valor
