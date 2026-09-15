@@ -36,6 +36,7 @@
 }
 
 .search-input {
+  border-radius: 20px;
   border: none;
   outline: none;
   flex-grow: 1;
