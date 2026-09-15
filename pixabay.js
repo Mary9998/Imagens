@@ -1,6 +1,6 @@
 "use strict";
 const loadGallery = (text) => {
-  console.log(text);
+  const imagesInfo = console.log(text);
 };
 
 //o target é onde eu estou cliando, ou seja, o valor
