@@ -1,6 +1,15 @@
 "use strict";
-const loadGallery = (text) => {
-  const imagesInfo = console.log(text);
+const searchImages = async (text) => {
+  const key = "57606088-0b7544a690264f460cd57a29b";
+  const url = `https://pixabay.com/api/?key=${key}&q=${text}`;
+  const response = await fetch(url);
+  return response.json();
+  //estou pegando apenas o json
+};
+
+const loadGallery = async (text) => {
+  const imagesInfo = await searchImages(text);
+  console.log(imagesInfo);
 };
 
 //o target é onde eu estou cliando, ou seja, o valor
