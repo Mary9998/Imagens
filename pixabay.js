@@ -45,11 +45,13 @@ const createCard = ({ webformatURL, pageURL, tags, likes, comments }) => {
 
 const loadGallery = async (text, page = 1) => {
   const container = document.querySelector(".container-gallery");
-  const { hits } = await searchImages(`${text}&page=${page}`);
+  const { hits, totalHits } = await searchImages(`${text}&page=${page}`);
   const cards = hits.map(createCard);
   container.replaceChildren(...cards);
   document.querySelector("#search-input").value = text;
 
+  const totaPages = Math.ceil(totalHits / 20);
+  document.querySelector("#page-total").textContent = `/ ${totaPages}`;
   document.querySelector("#search-input").value = text;
   document.querySelector("#page").value = page;
 };
@@ -61,12 +63,28 @@ const handleKeyPress = ({ key, target }) => {
   }
 };
 
-const handlePage= ({key, target}) =>{
-    const text = document.querySelector('#search-input')
-}
+const handlePage = ({ key, target }) => {
+  const text = document.querySelector("#search-input").value;
+  if (key === "Enter") {
+    loadGallery(text, target.value);
+  }
+};
+
+const handleNext = () => {
+  let page = Number(document.querySelector("#page").value);
+  const totalPages = Number(
+    document.querySelector("#page-total").textContent.replace("/", ""),
+  );
+  const text = document.querySelector("#search-input").value;
+  if (page < totalPages) {
+    page++;
+    loadGallery(text, page);
+  }
+};
 
 //keypress é quando alguém preciona uma tecla, keyup é quando a tecla é solta e keydown é quando a tecla é pressionada e segurada
 document
   .querySelector("#search-input")
   .addEventListener("keypress", handleKeyPress);
-document.querySelector('#page').addEventListener('keypress', handlePage)
+document.querySelector("#page").addEventListener("keypress", handlePage);
+document.querySelector("page-next").addEventListener("click", handleNext);
