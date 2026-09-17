@@ -3,7 +3,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #111;
+    background-color: #040047;
     gap: 20px;
     padding: 20px;
     margin-top: 6px;
@@ -24,13 +24,13 @@ footer a {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: #2f00ea;
     transition: all 0.5s;
 }
 
 footer a:hover {
-    background-color: #f2cb05;
-    color: #000;
+    background-color: #86ebff;
+    color: #110044;
 }
 
 footer .text {
