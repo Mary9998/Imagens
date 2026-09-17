@@ -82,9 +82,19 @@ const handleNext = () => {
   }
 };
 
+const handlePrevious = () =>{
+  let page = Number(document.querySelector("#page").value);
+  const text = document.querySelector("#search-input").value;
+  if (page > 1) {
+    page--;
+    loadGallery(text, page);
+  }
+};
+
 //keypress é quando alguém preciona uma tecla, keyup é quando a tecla é solta e keydown é quando a tecla é pressionada e segurada
 document
   .querySelector("#search-input")
   .addEventListener("keypress", handleKeyPress);
 document.querySelector("#page").addEventListener("keypress", handlePage);
-document.querySelector("page-next").addEventListener("click", handleNext);
+document.querySelector("#page-next").addEventListener("click", handleNext);
+document.querySelector("#page-previous").addEventListener("click", handlePrevious);
